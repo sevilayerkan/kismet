@@ -1,0 +1,44 @@
+swagger: '2.0'
+info:
+  title: 'Fortune Telling API'
+  description: 'API for generating random fortunes.'
+  version: '1.0'
+
+paths:
+  /api/fortune:
+    post:
+      tags:
+        - 'Fortune'
+      summary: 'Get a Random Fortune'
+      description: 'Returns a random fortune based on the user\'s question.'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'The user\'s question.'
+          required: true
+          schema:
+            $ref: '#/definitions/Question'
+      responses:
+        '200':
+          description: 'A random fortune.'
+          schema:
+            $ref: '#/definitions/Fortune'
+
+definitions:
+  Question:
+    type: 'object'
+    properties:
+      question:
+        type: 'string'
+        description: 'The user\'s question.'
+
+  Fortune:
+    type: 'object'
+    properties:
+      fortune:
+        type: 'string'
+        description: 'The random fortune.'
